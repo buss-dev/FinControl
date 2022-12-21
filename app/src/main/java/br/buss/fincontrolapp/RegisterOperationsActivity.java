@@ -187,9 +187,13 @@ public class RegisterOperationsActivity extends AppCompatActivity {
         if (operationValue.length() == 0) {
             Toast.makeText(this, "Preencha o valor!.", Toast.LENGTH_SHORT).show();
         } else {
-            database.insertNewTransaction(transactionTypeId, operationDescription.getText().toString(), formattedDBDate, Double.parseDouble(operationValue.getText().toString()));
-            Toast.makeText(this, "Operação salva", Toast.LENGTH_SHORT).show();
-            finish();
+            if (Double.parseDouble(operationValue.getText().toString()) == 0.0) {
+                Toast.makeText(this, "Valor não pode ser igual a 0", Toast.LENGTH_SHORT).show();
+            } else {
+                database.insertNewTransaction(transactionTypeId, operationDescription.getText().toString(), formattedDBDate, Double.parseDouble(operationValue.getText().toString()));
+                Toast.makeText(this, "Operação salva", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 
