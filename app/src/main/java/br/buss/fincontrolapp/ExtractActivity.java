@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,8 +26,13 @@ public class ExtractActivity extends AppCompatActivity {
         setContentView(R.layout.activity_extract);
         setTitle("Extrato");
 
-        recyclerViewTransactions = findViewById(R.id.recyclerViewExtract);
         FinControlDBOperations database = new FinControlDBOperations(this);
+
+        recyclerViewTransactions = findViewById(R.id.recyclerViewExtract);
+        TextView totalMoney = findViewById(R.id.totalMoneyView);
+
+        totalMoney.setText(String.format("R$ %.2f", database.getValueEarned() - database.getValueSpent()));
+
         transactionList = database.getAllTransactions();
     }
 
