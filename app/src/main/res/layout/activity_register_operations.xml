@@ -36,13 +36,13 @@
         android:id="@+id/spinnerRegister"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView3"
@@ -61,9 +61,9 @@
         style="?android:spinnerStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:onClick="openDatePicker"
         android:text="JAN 01 2020"
@@ -71,7 +71,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/operationDesc"
@@ -83,8 +83,9 @@
         android:inputType="textPersonName"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/datePickerRegister"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/datePickerRegister"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
         android:id="@+id/button6"
@@ -108,6 +109,46 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/operationDesc"
         app:layout_constraintStart_toStartOf="@+id/operationDesc"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Categoria da operação:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/spinnerRegister"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupRegister" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Data da operaçao:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/datePickerRegister"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRegister" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Descrição da Operação:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/operationDesc"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerRegister" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Valor da operação:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/operationValue"
         app:layout_constraintTop_toBottomOf="@+id/operationDesc" />
 
 
