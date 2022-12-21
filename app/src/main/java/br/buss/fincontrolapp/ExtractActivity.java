@@ -1,5 +1,6 @@
 package br.buss.fincontrolapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +35,13 @@ public class ExtractActivity extends AppCompatActivity {
         totalMoney.setText(String.format("R$ %.2f", database.getValueEarned() - database.getValueSpent()));
 
         transactionList = database.getAllTransactions();
+
+        recyclerViewTransactions.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+                totalMoney.setText(String.format("R$ %.2f", database.getValueEarned() - database.getValueSpent()));
+            }
+        });
     }
 
     @Override

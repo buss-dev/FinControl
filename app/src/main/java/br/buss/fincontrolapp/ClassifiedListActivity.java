@@ -1,5 +1,6 @@
 package br.buss.fincontrolapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,6 +45,20 @@ public class ClassifiedListActivity extends AppCompatActivity {
 
         debitTransactions = database.getTransactionsFiltered("debit");
         creditTransactions = database.getTransactionsFiltered("credit");
+
+        recyclerViewCredit.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+                creditValue.setText(String.format("R$ %.2f", database.getValueEarned()));
+            }
+        });
+
+        recyclerViewDebit.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+                debitValue.setText(String.format("R$ %.2f", database.getValueSpent()));
+            }
+        });
     }
 
     @Override
