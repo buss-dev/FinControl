@@ -185,7 +185,7 @@ public class RegisterOperationsActivity extends AppCompatActivity {
 
     public void newOperation(View view) {
         if (operationValue.length() == 0) {
-            Toast.makeText(this, "Preencha o valor!.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Preencha o valor!", Toast.LENGTH_SHORT).show();
         } else {
             if (Double.parseDouble(operationValue.getText().toString()) == 0.0) {
                 Toast.makeText(this, "Valor não pode ser igual a 0", Toast.LENGTH_SHORT).show();
