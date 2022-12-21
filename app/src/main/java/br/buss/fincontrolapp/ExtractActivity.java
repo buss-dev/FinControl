@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import br.buss.fincontrolapp.adapter.TransactionAdapter;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
@@ -32,14 +34,14 @@ public class ExtractActivity extends AppCompatActivity {
         recyclerViewTransactions = findViewById(R.id.recyclerViewExtract);
         TextView totalMoney = findViewById(R.id.totalMoneyView);
 
-        totalMoney.setText(String.format("R$ %.2f", database.getValueEarned() - database.getValueSpent()));
+        totalMoney.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueEarned() - database.getValueSpent()));
 
         transactionList = database.getAllTransactions();
 
         recyclerViewTransactions.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
             public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
-                totalMoney.setText(String.format("R$ %.2f", database.getValueEarned() - database.getValueSpent()));
+                totalMoney.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueEarned() - database.getValueSpent()));
             }
         });
     }

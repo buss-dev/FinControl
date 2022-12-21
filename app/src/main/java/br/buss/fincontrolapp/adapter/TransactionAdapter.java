@@ -11,7 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import br.buss.fincontrolapp.R;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
@@ -30,8 +32,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            transactionDesc = itemView.findViewById(R.id.transaction_desc);
-            transactionTypeDesc = itemView.findViewById(R.id.transaction_type_desc);
+            transactionDesc = itemView.findViewById(R.id.transaction_type_desc);
+            transactionTypeDesc = itemView.findViewById(R.id.transaction_desc);
             transactionValue = itemView.findViewById(R.id.transaction_value);
             transactionDate = itemView.findViewById(R.id.transaction_date);
             itemView.setOnCreateContextMenuListener(this);
@@ -86,7 +88,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.transactionValue.setTextColor(holder.transactionValue.getResources().getColor(android.R.color.holo_red_light));
         }
 
-        holder.transactionValue.setText(String.format("R$ %.2f", transaction.getValue()));
+        holder.transactionValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(transaction.getValue()));
     }
 
     @Override

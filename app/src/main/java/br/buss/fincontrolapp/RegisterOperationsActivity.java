@@ -184,8 +184,8 @@ public class RegisterOperationsActivity extends AppCompatActivity {
     }
 
     public void newOperation(View view) {
-        if (operationDescription.length() == 0 || operationValue.length() == 0) {
-            Toast.makeText(this, "Preencha todos os campos!.", Toast.LENGTH_SHORT).show();
+        if (operationValue.length() == 0) {
+            Toast.makeText(this, "Preencha o valor!.", Toast.LENGTH_SHORT).show();
         } else {
             database.insertNewTransaction(transactionTypeId, operationDescription.getText().toString(), formattedDBDate, Double.parseDouble(operationValue.getText().toString()));
             Toast.makeText(this, "Operação salva", Toast.LENGTH_SHORT).show();

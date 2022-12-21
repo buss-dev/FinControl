@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import br.buss.fincontrolapp.adapter.TransactionAdapter;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
@@ -40,8 +42,8 @@ public class ClassifiedListActivity extends AppCompatActivity {
 
         database = new FinControlDBOperations(this);
 
-        creditValue.setText(String.format("R$ %.2f", database.getValueEarned()));
-        debitValue.setText(String.format("R$ %.2f", database.getValueSpent()));
+        creditValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueEarned()));
+        debitValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueSpent()));
 
         debitTransactions = database.getTransactionsFiltered("debit");
         creditTransactions = database.getTransactionsFiltered("credit");
@@ -49,14 +51,14 @@ public class ClassifiedListActivity extends AppCompatActivity {
         recyclerViewCredit.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
             public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
-                creditValue.setText(String.format("R$ %.2f", database.getValueEarned()));
+                creditValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueEarned()));
             }
         });
 
         recyclerViewDebit.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
             public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
-                debitValue.setText(String.format("R$ %.2f", database.getValueSpent()));
+                debitValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueSpent()));
             }
         });
     }
