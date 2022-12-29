@@ -1,5 +1,6 @@
 package br.buss.fincontrolapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,6 +65,13 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerSearchActivity);
         database = new FinControlDBOperations(this);
         transactionList = database.getTransactionsFilteredByTime(startFilterDate, endFilterDate, "all");
+
+        recyclerView.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+                transactionList.clear();
+            }
+        });
 
     }
 
@@ -186,6 +194,21 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchTransactions(View view) {
+        String filter;
+
+        if (isCredit.isChecked()) {
+            filter = "credit";
+        } else if (isDebit.isChecked()) {
+            filter = "debit";
+        } else {
+            filter = "all";
+        }
+
+        transactionList = database.getTransactionsFilteredByTime(startFilterDate, endFilterDate, filter);
+        updateRecyclerTransactions();
+    }
+
+    public void searchTransactions() {
         String filter;
 
         if (isCredit.isChecked()) {

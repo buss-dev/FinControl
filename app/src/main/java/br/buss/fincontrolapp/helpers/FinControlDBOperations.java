@@ -199,4 +199,13 @@ public class FinControlDBOperations {
     public void deleteTransaction(Integer id) {
         db.delete(FinControlDB.TABLE_NAME_3, FinControlDB.COL_ID_TRANSACTIONS + " = " + id, null);
     }
+
+    public void updateTransaction(Integer transactionTypeId, String transactionDescription, String currentDate, Double value, Integer transactionId) {
+        ContentValues cv = new ContentValues();
+        cv.put(FinControlDB.COL_ID_TRANSACTION_TYPE, transactionTypeId);
+        cv.put(FinControlDB.COL_DESC_TRANSACTIONS, transactionDescription);
+        cv.put(FinControlDB.COL_TIME_TRANSACTIONS, currentDate);
+        cv.put(FinControlDB.COL_VALUE_TRANSACTIONS, value);
+        db.update(FinControlDB.TABLE_NAME_3, cv, FinControlDB.COL_ID_TRANSACTIONS + " = " + transactionId, null);
+    }
 }

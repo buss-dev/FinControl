@@ -42,6 +42,8 @@ public class ExtractActivity extends AppCompatActivity {
             @Override
             public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
                 totalMoney.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(database.getValueEarned() - database.getValueSpent()));
+                transactionList.clear();
+                transactionList = database.getAllTransactions();
             }
         });
     }

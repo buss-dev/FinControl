@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 
 import br.buss.fincontrolapp.helpers.DBUtils;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
+import br.buss.fincontrolapp.models.Transaction;
 import br.buss.fincontrolapp.models.TransactionType;
 
 public class RegisterOperationsActivity extends AppCompatActivity {
@@ -43,13 +44,20 @@ public class RegisterOperationsActivity extends AppCompatActivity {
     private EditText operationValue;
     private Integer transactionTypeId;
     List<TransactionType> transactionTypeList;
+    Transaction transaction;
+    Boolean existingTransaction = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_operations);
-        setTitle("Nova operação");
+        if (existingTransaction) {
+            setTitle("Editar operação");
+        } else {
+            setTitle("Nova operação");
+        }
+        Bundle bundle = getIntent().getExtras();
 
         spinnerRegister = findViewById(R.id.spinnerRegister);
         isDebit = findViewById(R.id.radioDebitRegister);
@@ -83,6 +91,21 @@ public class RegisterOperationsActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerRegister);
 
         operationValue.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(2)});
+
+        if (bundle != null) {
+            existingTransaction = true;
+            transaction = (Transaction) bundle.getSerializable("TRANSACTION");
+            dateButton.setText(transaction.getTime());
+            operationDescription.setText(transaction.getDesc());
+            operationValue.setText(String.valueOf(transaction.getValue()));
+            if (transaction.getCredit()) {
+                isDebit.setChecked(false);
+                isCredit.setChecked(true);
+            } else {
+                isDebit.setChecked(true);
+                isCredit.setChecked(false);
+            }
+        }
 
     }
 
@@ -183,14 +206,20 @@ public class RegisterOperationsActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void newOperation(View view) {
+    public void saveOperation(View view) {
         if (operationValue.length() == 0) {
             Toast.makeText(this, "Preencha o valor!", Toast.LENGTH_SHORT).show();
         } else {
             if (Double.parseDouble(operationValue.getText().toString()) == 0.0) {
                 Toast.makeText(this, "Valor não pode ser igual a 0", Toast.LENGTH_SHORT).show();
             } else {
-                database.insertNewTransaction(transactionTypeId, operationDescription.getText().toString(), formattedDBDate, Double.parseDouble(operationValue.getText().toString()));
+                if (!existingTransaction) {
+                    database.insertNewTransaction(transactionTypeId, operationDescription.getText().toString(),
+                            formattedDBDate, Double.parseDouble(operationValue.getText().toString()));
+                } else {
+                    database.updateTransaction(transactionTypeId, operationDescription.getText().toString(),
+                            formattedDBDate, Double.parseDouble(operationValue.getText().toString()), transaction.getIdTransaction());
+                }
                 Toast.makeText(this, "Operação salva", Toast.LENGTH_SHORT).show();
                 finish();
             }

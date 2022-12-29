@@ -1,6 +1,8 @@
 package br.buss.fincontrolapp.models;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable {
     private Integer idTransaction;
     private Integer idUser;
     private Boolean isDebit;

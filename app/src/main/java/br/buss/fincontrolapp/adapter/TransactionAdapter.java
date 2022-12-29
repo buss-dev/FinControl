@@ -1,10 +1,12 @@
 package br.buss.fincontrolapp.adapter;
 
+import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import br.buss.fincontrolapp.R;
+import br.buss.fincontrolapp.RegisterOperationsActivity;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
 import br.buss.fincontrolapp.models.Transaction;
 
@@ -59,8 +62,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 return false;
             }
         };
-
-
     }
 
     public TransactionAdapter(List<Transaction> list) {
@@ -89,6 +90,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         holder.transactionValue.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(transaction.getValue()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(holder.itemView.getContext(), RegisterOperationsActivity.class);
+                it.putExtra("TRANSACTION", transactions.get(holder.getAdapterPosition()));
+                holder.itemView.getContext().startActivity(it);
+            }
+        });
     }
 
     @Override
