@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import br.buss.fincontrolapp.database.FinControlDB;
 import br.buss.fincontrolapp.helpers.FinControlDBOperations;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     FinControlDBOperations database;
     Double spentValue;
     Double earnedValue;
+    TextView totalMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         earnedValue = database.getValueEarned();
 
         pieChart = findViewById(R.id.piechart);
+        totalMoney = findViewById(R.id.mainActivityTotalMoney);
     }
 
     @Override
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         pieChart.clearChart();
         spentValue = database.getValueSpent();
         earnedValue = database.getValueEarned();
+        totalMoney.setText(NumberFormat.getCurrencyInstance(new Locale("pt","BR")).format(earnedValue - spentValue));
 
         if (spentValue == 0 && earnedValue == 0) {
             pieChart.addPieSlice(new PieModel(
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                     "Créditos", earnedValue.floatValue(), getResources().getColor(android.R.color.holo_green_light)
             ));
         }
+
+        pieChart.startAnimation();
     }
 
     public void goToExtractActivity(View view) {

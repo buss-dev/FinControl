@@ -8,6 +8,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Saldo:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/mainActivityTotalMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="R$ 0,00"
+            android:textAlignment="textEnd"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
@@ -70,7 +94,10 @@
             android:layout_margin="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:onClick="goToClassifiedListActivity">
+            app:egUsePieRotation="true"
+            app:egLegendTextSize="18sp"
+            app:egUseCustomInnerValue="true"
+        >
 
         </org.eazegraph.lib.charts.PieChart>
     </LinearLayout>
