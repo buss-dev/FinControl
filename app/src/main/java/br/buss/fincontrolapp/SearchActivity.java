@@ -66,13 +66,6 @@ public class SearchActivity extends AppCompatActivity {
         database = new FinControlDBOperations(this);
         transactionList = database.getTransactionsFilteredByTime(startFilterDate, endFilterDate, "all");
 
-        recyclerView.setRecyclerListener(new RecyclerView.RecyclerListener() {
-            @Override
-            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
-                transactionList.clear();
-            }
-        });
-
     }
 
     private String getTodaysDate() {
@@ -209,6 +202,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void searchTransactions() {
+        transactionList.clear();
         String filter;
 
         if (isCredit.isChecked()) {
