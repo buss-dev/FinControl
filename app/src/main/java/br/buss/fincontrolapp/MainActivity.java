@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (spentValue == 0 && earnedValue == 0) {
             pieChart.addPieSlice(new PieModel(
-                    "Null", 100, getResources().getColor(android.R.color.darker_gray)
+                    "Sem transações", 100, getResources().getColor(android.R.color.darker_gray)
             ));
         } else {
             pieChart.addPieSlice(new PieModel(
