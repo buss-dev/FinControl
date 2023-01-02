@@ -95,7 +95,11 @@ public class RegisterOperationsActivity extends AppCompatActivity {
         if (bundle != null) {
             existingTransaction = true;
             transaction = (Transaction) bundle.getSerializable("TRANSACTION");
-            dateButton.setText(transaction.getTime());
+
+            String timeNotFormatted = transaction.getTime();
+            String[] timeSplitted = timeNotFormatted.split("/");
+
+            dateButton.setText(makeDateString(Integer.parseInt(timeSplitted[0]), Integer.parseInt(timeSplitted[1]), Integer.parseInt(timeSplitted[2])));
             operationDescription.setText(transaction.getDesc());
             operationValue.setText(String.valueOf(transaction.getValue()));
             if (transaction.getCredit()) {
