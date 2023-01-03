@@ -103,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = makeDateString(dayOfMonth, month, year);
+                String date = DBUtils.makeDateString(dayOfMonth, month, year);
                 endFilterDate = DBUtils.getFormattedDate(year, month, dayOfMonth);
                 dateEndButton.setText(date);
             }

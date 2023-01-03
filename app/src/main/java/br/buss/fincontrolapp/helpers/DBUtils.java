@@ -99,7 +99,13 @@ public class DBUtils {
         return DBUtils.makeDateString(day, month, year);
     }
 
-    public static String makeDateString(int day, int month, int year) {
-        return getMonthFormat(month) + " " + day + " " + year;
+    public static String makeDateString(Integer day, Integer month, Integer year) {
+        String dayString;
+        if (day < 10) {
+            dayString = "0" + day;
+        } else {
+            dayString = day.toString();
+        }
+        return getMonthFormat(month) + " " + dayString + " " + year;
     }
 }
