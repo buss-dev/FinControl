@@ -8,7 +8,7 @@ O FinControl conta com as seguintes funcionalidades:
 3. Edição de operações;
 4. Visualização de operações (Podendo filtrar por data e/ou tipo de operação);
 
-As operações do projeto ficam salvas no banco de dados local do dispositivo. Caso queira testar o aplicativo, deixo aqui o link de download do apk.
+As operações do projeto ficam salvas no banco de dados local do dispositivo.
 
 ## Telas do Projeto:
 1. Tela inicial:
