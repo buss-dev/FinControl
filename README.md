@@ -1,6 +1,6 @@
 # FinControl - APP de Controle de Finanças
 
-Este aplicativo foi desenvolvido para um trabalho da matéria de Desenvolvimento para Aplicativos Móveis na Universidade Federal do Paraná.
+Este aplicativo foi desenvolvido para um trabalho da matéria de Desenvolvimento para Dispositivos Móveis na Universidade Federal do Paraná.
 
 O FinControl conta com as seguintes funcionalidades:
 1. Cadastro de operações (despesas/ganhos);
